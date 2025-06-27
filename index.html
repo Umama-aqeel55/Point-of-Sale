@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point of Sale System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+</head>
+<body>
+    <div class="pos-app-container">
+      <div class="main-content">
+            <div class="input-row-1">
+                <div class="input-group date-group">
+                    <input type="date" id="currentDate" class="date-input">
+                    <span class="date-calendar-icon"><i class="fas fa-calendar-alt"></i></span>
+                </div>
+                <div class="input-group client-group">
+                    <span class="input-label">Only Client</span>
+                    <select id="clientSelect" class="client-select">
+                        <option value="walking-customer">Mr. Walking Customer</option>
+                        </select>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <button class="btn btn-primary">New</button>
+                <button class="btn btn-primary">Save</button>
+                <button class="btn btn-primary">FT(ItemList)</button>
+                <button class="btn btn-secondary">Previous</button>
+                <button class="btn btn-secondary">Hold # 0/1</button>
+                <button class="btn btn-secondary">Next</button>
+                <button class="btn btn-secondary">Cancel</button>
+                <button class="btn btn-secondary">Other Options</button>
+                <button class="btn btn-success-alt">Auto Qty</button>
+                <button class="btn btn-success-alt">Get Discount</button>
+                <button class="btn btn-success" id="addItemBtn"><i class="fas fa-plus-circle"></i> Add</button>
+                <button class="btn btn-danger" id="deleteAllItemsBtn"><i class="fas fa-minus-circle"></i> Delete</button>
+            </div>
+
+            <div class="remarks-section">
+                <input type="text" placeholder="Enter Remarks Here" class="remarks-input">
+            </div>
+
+            <div class="item-table-container">
+                <table class="item-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Barcode</th>
+                            <th>Item Name</th>
+                            <th>Price</th>
+                            <th>Qty/Wt</th>
+                            <th>Unit</th>
+                            <th>Amount</th>
+                            <th>Net Amount</th>
+                            <th class="action-column"></th> </tr>
+                    </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="app-footer-simple">
+            <div class="footer-total-box">
+                <span class="total-label-simple">Total Items</span>
+                <span class="total-value-simple" id="totalItems">0</span>
+            </div>
+            <div class="footer-total-box">
+                <span class="total-label-simple">T. Qty/Wt</span>
+                <span class="total-value-simple" id="totalQtyWt"></span>
+            </div>
+            <div class="footer-total-box">
+                <span class="total-label-simple">Gross Amount</span>
+                <span class="total-value-simple" id="grossAmount"></span>
+            </div>
+            <div class="footer-total-box net-amount-box">
+                <span class="total-label-simple">Net Amount</span>
+                <span class="total-value-simple net-amount-value" id="netAmount"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
