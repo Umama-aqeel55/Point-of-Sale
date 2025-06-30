@@ -11,7 +11,16 @@
 </head>
 <body>
     <div class="pos-app-container">
-      <div class="main-content">
+        
+        <div class="last-invoice-section">
+            <div class="last-invoice-box">
+                <span class="invoice-title">Last Invoice</span>
+                <span class="invoice-detail">Cash Paid: <span id="cashPaid">0</span></span>
+                <span class="invoice-detail">Cash Back: <span id="cashBack">0</span></span>
+            </div>
+        </div>
+
+        <div class="main-content">
             <div class="input-row-1">
                 <div class="input-group date-group">
                     <input type="date" id="currentDate" class="date-input">
@@ -38,6 +47,7 @@
                 <button class="btn btn-success-alt">Get Discount</button>
                 <button class="btn btn-success" id="addItemBtn"><i class="fas fa-plus-circle"></i> Add</button>
                 <button class="btn btn-danger" id="deleteAllItemsBtn"><i class="fas fa-minus-circle"></i> Delete</button>
+                <button class="btn btn-secondary">T.p</button>
             </div>
 
             <div class="remarks-section">
@@ -71,15 +81,15 @@
             </div>
             <div class="footer-total-box">
                 <span class="total-label-simple">T. Qty/Wt</span>
-                <span class="total-value-simple" id="totalQtyWt"></span>
+                <span class="total-value-simple" id="totalQtyWt">0.00</span>
             </div>
             <div class="footer-total-box">
                 <span class="total-label-simple">Gross Amount</span>
-                <span class="total-value-simple" id="grossAmount"></span>
+                <span class="total-value-simple" id="grossAmount">0.00</span>
             </div>
             <div class="footer-total-box net-amount-box">
                 <span class="total-label-simple">Net Amount</span>
-                <span class="total-value-simple net-amount-value" id="netAmount"></span>
+                <span class="total-value-simple net-amount-value" id="netAmount">0.00</span>
             </div>
         </div>
 
