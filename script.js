@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const addItemBtn = document.getElementById('addItemBtn');
     const deleteAllItemsBtn = document.getElementById('deleteAllItemsBtn');
-    
     const itemTableBody = document.querySelector('.item-table tbody');
 
     const totalItemsElement = document.getElementById('totalItems');
@@ -16,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const grossAmountElement = document.getElementById('grossAmount');
     const netAmountElement = document.getElementById('netAmount');
 
-    let itemIdCounter = 0; 
-    
+    const cashPaidElement = document.getElementById('cashPaid');
+    const cashBackElement = document.getElementById('cashBack');
+
+    let itemIdCounter = 0; // To assign unique IDs to rows
 
     const updateAllTotals = () => {
         let totalItems = 0;
@@ -25,36 +26,51 @@ document.addEventListener('DOMContentLoaded', () => {
         let grossAmount = 0;
         let netAmount = 0;
 
-        const rows = itemTableBody.querySelectorAll('tr[data-item-id]');
+        const rows = itemTableBody.querySelectorAll('tr'); // Select all current rows in tbody
 
-        rows.forEach(row => {
-            totalItems++;
-            const priceInput = row.querySelector('.item-price');
-            const qtyInput = row.querySelector('.item-qty');
-
-            const price = parseFloat(priceInput?.value) || 0;
-            const qty = parseFloat(qtyInput?.value) || 0;
-
-            const itemAmount = price * qty;
-            const itemNetAmount = itemAmount; 
-
-            row.querySelector('.item-amount').textContent = itemAmount.toFixed(2);
-            row.querySelector('.item-net-amount').textContent = itemNetAmount.toFixed(2);
-
-            totalQtyWt += qty;
-            grossAmount += itemAmount;
-            netAmount += itemNetAmount;
+        rows.forEach((row) => {
+            row.classList.remove('highlighted-row');
         });
+
+        rows.forEach((row) => {
+            if (row.dataset.itemId) { // Ensure it's a data row, not a header or empty row
+                totalItems++;
+                const priceInput = row.querySelector('.item-price');
+                const qtyInput = row.querySelector('.item-qty');
+
+                const price = parseFloat(priceInput?.value) || 0;
+                const qty = parseFloat(qtyInput?.value) || 0;
+
+                const itemAmount = price * qty;
+                const itemNetAmount = itemAmount; 
+
+                row.querySelector('.item-amount').textContent = itemAmount.toFixed(2);
+                row.querySelector('.item-net-amount').textContent = itemNetAmount.toFixed(2);
+
+                totalQtyWt += qty;
+                grossAmount += itemAmount;
+                netAmount += itemNetAmount;
+            }
+        });
+
+        const firstDataRow = itemTableBody.querySelector('tr[data-item-id]');
+        if (firstDataRow) {
+            firstDataRow.classList.add('highlighted-row');
+        }
+
 
         totalItemsElement.textContent = totalItems;
         totalQtyWtElement.textContent = totalQtyWt.toFixed(2);
         grossAmountElement.textContent = grossAmount.toFixed(2);
         netAmountElement.textContent = netAmount.toFixed(2);
+
+        cashPaidElement.textContent = someValue.toFixed(2);
+        cashBackElement.textContent = someOtherValue.toFixed(2);
     };
 
     const addNewItemRow = () => {
         itemIdCounter++;
-        const newRow = itemTableBody.insertRow();
+        const newRow = itemTableBody.insertRow(0);
         newRow.dataset.itemId = itemIdCounter; 
 
         newRow.innerHTML = `
@@ -76,18 +92,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const deleteRowBtn = newRow.querySelector('.delete-row-btn');
 
         const handleInputChange = () => {
-            updateAllTotals();
+            updateAllTotals(); 
         };
 
         priceInput.addEventListener('input', handleInputChange);
         qtyInput.addEventListener('input', handleInputChange);
         deleteRowBtn.addEventListener('click', (event) => {
-            
             event.target.closest('tr').remove(); 
             updateAllTotals(); 
         });
 
-        updateAllTotals(); 
+        updateAllTotals();
     };
 
     addItemBtn.addEventListener('click', addNewItemRow);
@@ -115,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
 
     updateAllTotals();
 });
